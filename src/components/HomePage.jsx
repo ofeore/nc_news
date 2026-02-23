@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import ArticleList from "./ArticleList";
 
 function HomePage() {
   const [articles, setArticles] = useState([]);
@@ -12,18 +13,7 @@ function HomePage() {
       });
   }, []);
 
-  return (
-    <div>
-      <h1>Articles</h1>
-      {articles.map((article) => (
-        <div key={article.article_id}>
-          <h3>{article.title}</h3>
-          <p>{article.author}</p>
-          <p>{article.created_at}</p>
-        </div>
-      ))}
-    </div>
-  );
+  return <ArticleList articles={articles} />;
 }
 
 export default HomePage;
