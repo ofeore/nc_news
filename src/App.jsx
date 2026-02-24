@@ -15,5 +15,4 @@ export default App;
 
 // To-do:
 
-//Basic styling and date formatted √
-//Make filter using select with three options - newest, created_at, my articles (hardcoded for grumpy19)
+// Error handling and first route.
