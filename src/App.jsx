@@ -12,3 +12,8 @@ function App() {
 }
 
 export default App;
+
+// To-do:
+
+//Basic styling
+//Make filter using select with three options - newest, created_at, my articles (hardcoded for grumpy19)
