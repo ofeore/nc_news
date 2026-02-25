@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import ArticleList from "./ArticleList";
 
 function HomePage() {
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState(null);
   const [filter, setFilter] = useState("All articles");
 
   useEffect(() => {
@@ -13,6 +13,8 @@ function HomePage() {
         setArticles(data.articles);
       });
   }, []);
+
+  if (!articles) return <h2>Loading...</h2>;
 
   const LOGGED_ON_USER = "grumpy19";
 

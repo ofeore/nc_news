@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function ArticleList({ articles }) {
   function convertDate(dateString) {
     let isoDate = new Date(dateString);
@@ -18,7 +20,9 @@ function ArticleList({ articles }) {
       {articles.map((article) => (
         <div className="article-card" key={article.article_id}>
           <div className="title-container">
-            <h3 className="article-title">{article.title}</h3>
+            <Link to={`/articles/${article.article_id}`}>
+              <h3 className="article-title">{article.title}</h3>
+            </Link>
             <p className="date">{convertDate(article.created_at)}</p>
           </div>
           <p className="article-author">By {article.author}</p>
