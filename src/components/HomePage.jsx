@@ -26,6 +26,14 @@ function HomePage() {
     articlesShown = articles.filter((a) => a.topic === "coding");
   }
 
+  if (filter === "Cooking") {
+    articlesShown = articles.filter((a) => a.topic === "cooking");
+  }
+
+  if (filter === "Football") {
+    articlesShown = articles.filter((a) => a.topic === "football");
+  }
+
   return (
     <>
       <div className="select-container">
@@ -37,7 +45,9 @@ function HomePage() {
           >
             <option value="All articles">All articles</option>
             <option value="My articles">My articles</option>
-            <option value="Coding">Coding topic</option>
+            <option value="Coding">Topic: Coding</option>
+            <option value="Cooking">Topic: Cooking</option>
+            <option value="Football">Topic: Football</option>
           </select>
         </label>
       </div>
