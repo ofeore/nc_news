@@ -130,9 +130,20 @@ body {
   grid-template-columns: 1fr;
   margin-top: 50px;
   border: 1px solid black;
+  border-radius: 10px;
+}
+
+.comments-header {
+  display: flex;
+  gap: 20px;
 }
 .comments-title {
   margin-left: 20px;
+}
+
+.add-comment-button {
+  margin-top: 15px;
+  height: 40px;
 }
 
 .comment-card {
@@ -160,4 +171,93 @@ body {
 
 .comment-votes {
   padding-top: 7.5px;
+}
+
+/* Comment Form */
+
+.add-comment-form {
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  border: 1px solid #e5e5e5;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.add-comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-comment-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.close-comment-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.2s ease;
+}
+
+.close-comment-btn:hover:not(:disabled) {
+  color: #000;
+}
+
+.add-comment-textarea {
+  resize: vertical;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition:
+    border 0.2s ease,
+    box-shadow 0.2s ease;
+  font-family: inherit;
+}
+
+.add-comment-textarea:focus {
+  border-color: #21a3e4;
+}
+
+.submit-comment-btn {
+  align-self: flex-start;
+  padding: 8px 16px;
+  background-color: #21a3e4;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition:
+    background-color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.submit-comment-btn:hover:not(:disabled) {
+  background-color: #1b8bc3;
+}
+
+/* Disabled state */
+.submit-comment-btn:disabled,
+.close-comment-btn:disabled,
+.add-comment-textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Error message */
+.comment-error {
+  color: #d9534f;
+  font-size: 0.85rem;
+  margin: 0;
 }

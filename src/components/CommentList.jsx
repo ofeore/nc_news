@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
+import AddCommentForm from "./AddCommentForm";
 import defaultAvatar from "../assets/default-avatar.jpg";
 
 function CommentList({ article_id }) {
   const [articleComments, setArticleComments] = useState([]);
   const [users, setUsers] = useState(null);
+  const [isAddCommentClicked, setIsAddCommentClicked] = useState(false);
 
   useEffect(() => {
     async function fetchArticleComments() {
@@ -41,9 +43,32 @@ function CommentList({ article_id }) {
     return user ? user.avatar_url : "";
   }
 
+  function addCommentToList(newComment) {
+    setArticleComments((current) => [newComment, ...current]);
+  }
+
   return (
     <div className="comments-grid">
-      <h2 className="comments-title">Comments</h2>
+      <div className="comments-header">
+        <h2 className="comments-title">Comments</h2>
+
+        {!isAddCommentClicked && (
+          <button
+            className="add-comment-button"
+            onClick={() => setIsAddCommentClicked(true)}
+          >
+            + Add Comment
+          </button>
+        )}
+      </div>
+
+      {isAddCommentClicked && (
+        <AddCommentForm
+          article_id={article_id}
+          setClicked={setIsAddCommentClicked}
+          addCommentToList={addCommentToList}
+        />
+      )}
       {articleComments.map((comment) => (
         <div className="comment-card" key={comment.comment_id}>
           <div className="comment-card-author-and-avatar-container">
@@ -55,7 +80,6 @@ function CommentList({ article_id }) {
             <h4 className="comment-author">{comment.author}</h4>
           </div>
           <p>{comment.body}</p>
-          <p className="comment-votes">Votes: {comment.votes}</p>
         </div>
       ))}
     </div>
