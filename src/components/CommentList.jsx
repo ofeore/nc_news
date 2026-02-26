@@ -6,6 +6,7 @@ function CommentList({ article_id }) {
   const [articleComments, setArticleComments] = useState([]);
   const [users, setUsers] = useState(null);
   const [isAddCommentClicked, setIsAddCommentClicked] = useState(false);
+  const [deletingId, setDeletingId] = useState(null);
 
   useEffect(() => {
     async function fetchArticleComments() {
@@ -51,6 +52,7 @@ function CommentList({ article_id }) {
 
   async function handleDelete(comment_id) {
     const previousComments = articleComments;
+    setDeletingId(comment_id);
 
     setArticleComments(
       (curr) => curr.filter((c) => c.comment_id !== comment_id), //optimistic render
@@ -66,6 +68,8 @@ function CommentList({ article_id }) {
     } catch (err) {
       // revert
       setArticleComments(previousComments);
+    } finally {
+      setDeletingId(null);
     }
   }
 
@@ -106,8 +110,9 @@ function CommentList({ article_id }) {
             <button
               className="delete-comment-btn"
               onClick={() => handleDelete(comment.comment_id)}
+              disabled={deletingId === comment.comment_id}
             >
-              Delete
+              {deletingId === comment.comment_id ? "Deleting..." : "Delete"}
             </button>
           )}
         </div>
