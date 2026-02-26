@@ -12,6 +12,7 @@ function App() {
       <main className="page">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/topics/:topic" element={<HomePage />} />
           <Route path="/articles/:article_id" element={<ArticlePage />} />
         </Routes>
       </main>
@@ -20,8 +21,3 @@ function App() {
 }
 
 export default App;
-
-// To-do:
-
-// Style individual comment cards/section and make the ability to post a comment
-// We dont yet have an endpoint to update votes to comments (update docs also)

@@ -95,28 +95,31 @@ function CommentList({ article_id }) {
           addCommentToList={addCommentToList}
         />
       )}
-      {articleComments.map((comment) => (
-        <div className="comment-card" key={comment.comment_id}>
-          <div className="comment-card-author-and-avatar-container">
-            <img
-              className="comment-avatar-img"
-              src={getUserImgUrl(users, comment.author)}
-              alt=""
-            />
-            <h4 className="comment-author">{comment.author}</h4>
+
+      <div className="comments-scroll">
+        {articleComments.map((comment) => (
+          <div className="comment-card" key={comment.comment_id}>
+            <div className="comment-card-author-and-avatar-container">
+              <img
+                className="comment-avatar-img"
+                src={getUserImgUrl(users, comment.author)}
+                alt=""
+              />
+              <h4 className="comment-author">{comment.author}</h4>
+            </div>
+            <p>{comment.body}</p>
+            {comment.author === loggedInUser && (
+              <button
+                className="delete-comment-btn"
+                onClick={() => handleDelete(comment.comment_id)}
+                disabled={deletingId === comment.comment_id}
+              >
+                {deletingId === comment.comment_id ? "Deleting..." : "Delete"}
+              </button>
+            )}
           </div>
-          <p>{comment.body}</p>
-          {comment.author === loggedInUser && (
-            <button
-              className="delete-comment-btn"
-              onClick={() => handleDelete(comment.comment_id)}
-              disabled={deletingId === comment.comment_id}
-            >
-              {deletingId === comment.comment_id ? "Deleting..." : "Delete"}
-            </button>
-          )}
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }

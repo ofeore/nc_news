@@ -50,26 +50,44 @@ function ArticlePage() {
 
   return (
     <>
-      <div>
-        <h2>{currentArticle.title}</h2>
-        <img src={`${currentArticle.article_img_url}`} />
-        <p>{currentArticle.body}</p>
-        <p>Votes: {currentArticle.votes + votes}</p>
-        <button
-          onClick={() => {
-            updateCount(1);
-          }}
-        >
-          Upvote
-        </button>
-        <button
-          onClick={() => {
-            updateCount(-1);
-          }}
-        >
-          Downvote
-        </button>
+      <div className="single-article-container">
+        <article className="single-article-card">
+          <h1 className="single-article-title">{currentArticle.title}</h1>
+
+          <p className="single-article-meta">
+            By {currentArticle.author} • {currentArticle.topic}
+          </p>
+
+          <img
+            className="single-article-image"
+            src={currentArticle.article_img_url}
+            alt={currentArticle.title}
+          />
+
+          <p className="single-article-body">{currentArticle.body}</p>
+
+          <div className="vote-section">
+            <p className="vote-count">Votes: {currentArticle.votes + votes}</p>
+
+            <div className="vote-buttons">
+              <button
+                className="vote-btn upvote"
+                onClick={() => updateCount(1)}
+              >
+                ↑ Upvote
+              </button>
+
+              <button
+                className="vote-btn downvote"
+                onClick={() => updateCount(-1)}
+              >
+                ↓ Downvote
+              </button>
+            </div>
+          </div>
+        </article>
       </div>
+
       <CommentList article_id={article_id} />
     </>
   );
