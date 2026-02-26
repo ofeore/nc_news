@@ -178,9 +178,9 @@ body {
 .add-comment-form {
   margin: 20px 0;
   padding: 20px;
-  background-color: #f9f9f9;
+  /* background-color: #f9f9f9;
   border-radius: 12px;
-  border: 1px solid #e5e5e5;
+  border: 1px solid #e5e5e5; */
 
   display: flex;
   flex-direction: column;
@@ -260,4 +260,24 @@ body {
   color: #d9534f;
   font-size: 0.85rem;
   margin: 0;
+}
+
+.delete-comment-btn {
+  margin-top: 8px;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  max-width: 100px;
+
+  background-color: transparent;
+  color: #d9534f;
+  border: 1px solid #d9534f;
+  border-radius: 6px;
+
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.delete-comment-btn:hover {
+  background-color: #d9534f;
+  color: white;
 }

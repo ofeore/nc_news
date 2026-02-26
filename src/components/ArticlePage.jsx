@@ -40,7 +40,7 @@ function ArticlePage() {
           body: JSON.stringify({ increment_votes: num }),
         },
       );
-      if (!res.ok) throw new Error("Vote failed"); // e.g. if backend fails.
+      if (!res.ok) throw new Error("Vote failed"); // if backend fails.
     } catch (err) {
       // err if something like user internet fails.
       setVotes((curr) => curr - num);

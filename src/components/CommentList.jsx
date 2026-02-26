@@ -47,6 +47,28 @@ function CommentList({ article_id }) {
     setArticleComments((current) => [newComment, ...current]);
   }
 
+  const loggedInUser = "grumpy19";
+
+  async function handleDelete(comment_id) {
+    const previousComments = articleComments;
+
+    setArticleComments(
+      (curr) => curr.filter((c) => c.comment_id !== comment_id), //optimistic render
+    );
+
+    try {
+      const res = await fetch(
+        `https://back-end-nc-news-71fp.onrender.com/api/comments/${comment_id}`,
+        { method: "DELETE" },
+      );
+
+      if (!res.ok) throw new Error("Delete failed");
+    } catch (err) {
+      // revert
+      setArticleComments(previousComments);
+    }
+  }
+
   return (
     <div className="comments-grid">
       <div className="comments-header">
@@ -80,6 +102,14 @@ function CommentList({ article_id }) {
             <h4 className="comment-author">{comment.author}</h4>
           </div>
           <p>{comment.body}</p>
+          {comment.author === loggedInUser && (
+            <button
+              className="delete-comment-btn"
+              onClick={() => handleDelete(comment.comment_id)}
+            >
+              Delete
+            </button>
+          )}
         </div>
       ))}
     </div>
