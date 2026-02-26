@@ -122,3 +122,42 @@ body {
   margin-left: 5px;
   margin-top: 0px;
 }
+
+/* Comments styling */
+
+.comments-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 50px;
+  border: 1px solid black;
+}
+.comments-title {
+  margin-left: 20px;
+}
+
+.comment-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 30px;
+  margin: 10px;
+  background-color: rgb(255, 255, 255);
+}
+
+.comment-avatar-img {
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  border-radius: 100px;
+  margin-top: 10px;
+}
+
+.comment-card-author-and-avatar-container {
+  display: flex;
+  gap: 15px;
+}
+
+.comment-votes {
+  padding-top: 7.5px;
+}

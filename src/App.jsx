@@ -23,4 +23,5 @@ export default App;
 
 // To-do:
 
-// Error handling and first route.
+// Style individual comment cards/section and make the ability to post a comment
+// We dont yet have an endpoint to update votes to comments (update docs also)
