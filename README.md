@@ -45,21 +45,19 @@ Deployed version: https://ncnewspage.netlify.app/
 
 ## Tech Stack
 
-React
+- React
 
-JavaScript (ES6+)
+- JavaScript (ES6+)
 
-HTML
+- HTML
 
-CSS
+- CSS
 
-RESTful API integration
+- RESTful API integration
 
-Netlify (deployment)
+- Netlify (deployment)
 
 ## Backend Repo
-
-Backend Repository
 
 This frontend consumes data from a custom built API.
 
