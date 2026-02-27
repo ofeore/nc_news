@@ -28,10 +28,16 @@ function ArticleList({ articles }) {
           <p className="article-author">By {article.author}</p>
           <img className="images" src={article.article_img_url} />
 
-          <p className="votes">Votes: {article.votes}</p>
-          <p className="topic-name">
-            {article.topic[0].toUpperCase() + article.topic.slice(1)}
-          </p>
+          <div className="votes-div">
+            <p className="votes">Votes: {article.votes}</p>
+          </div>
+
+          <div className="article-meta">
+            <p className="topic-name">
+              {article.topic[0].toUpperCase() + article.topic.slice(1)}
+            </p>
+            <p className="comment-count">Comments: {article.comment_count}</p>
+          </div>
         </div>
       ))}
     </div>

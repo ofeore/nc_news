@@ -50,7 +50,9 @@ function HomePage() {
     <>
       <div className="articles-toolbar">
         <h2 className="articles-heading">
-          {topic ? `Topic: ${topic}` : "All articles"}
+          {topic
+            ? `Topic: ${topic[0].toUpperCase() + topic.slice(1)}`
+            : "All articles"}
         </h2>
 
         <div className="sort-controls">
@@ -81,7 +83,11 @@ function HomePage() {
         </div>
       </div>
 
-      {isLoading && <h2>Loading...</h2>}
+      {isLoading && (
+        <div className="loader-container">
+          <p className="loader"></p>
+        </div>
+      )}
       {err && <p>{err}</p>}
       {articles && <ArticleList articles={articles} />}
     </>

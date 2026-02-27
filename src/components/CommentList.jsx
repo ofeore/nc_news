@@ -31,7 +31,7 @@ function CommentList({ article_id }) {
   }, []);
 
   if (!users || articleComments.length === 0)
-    return <h2>Comments loading...</h2>;
+    return <h2 className="comments-loading-msg">Comments loading...</h2>;
 
   function getUserImgUrl(users, author) {
     const user = users.find((u) => u.username === author);

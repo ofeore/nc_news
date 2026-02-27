@@ -1,48 +1,63 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { FaThumbsUp } from "react-icons/fa6";
+import { FaThumbsDown } from "react-icons/fa6";
 import CommentList from "./CommentList";
 
 function ArticlePage() {
   const [currentArticle, setCurrentArticle] = useState(null);
   const [votes, setVotes] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isUpvoteClicked, setIsUpvoteClicked] = useState(false);
+  const [isDownvoteClicked, setIsDownvoteClicked] = useState(false);
   const { article_id } = useParams();
 
   useEffect(() => {
     async function fetchSingleArticle() {
+      setIsLoading(true);
+
       const res = await fetch(
         `https://back-end-nc-news-71fp.onrender.com/api/articles/${article_id}`,
       );
-
       const data = await res.json();
-      console.log(data);
+
       setCurrentArticle(data.article);
+      setIsLoading(false);
     }
 
     fetchSingleArticle();
   }, [article_id]);
 
-  if (!currentArticle) return <h2>Loading...</h2>;
-  console.log(currentArticle);
+  if (isLoading || !currentArticle) {
+    return (
+      <div className="loader-container">
+        <div className="loader" />
+      </div>
+    );
+  }
 
   async function updateCount(num) {
-    // OPTIMISTIC RENDERING - Remove vote if fails.
-
     setVotes((curr) => curr + num);
+
+    if (num === 1) {
+      setIsUpvoteClicked(true);
+      setIsDownvoteClicked(false);
+    } else if (num === -1) {
+      setIsUpvoteClicked(false);
+      setIsDownvoteClicked(true);
+    }
 
     try {
       const res = await fetch(
         `https://back-end-nc-news-71fp.onrender.com/api/articles/${article_id}`,
         {
           method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ increment_votes: num }),
         },
       );
-      if (!res.ok) throw new Error("Vote failed"); // if backend fails.
+      if (!res.ok) throw new Error("Vote failed");
     } catch (err) {
-      // err if something like user internet fails.
       setVotes((curr) => curr - num);
       console.error(err);
     }
@@ -72,16 +87,18 @@ function ArticlePage() {
             <div className="vote-buttons">
               <button
                 className="vote-btn upvote"
-                onClick={() => updateCount(1)}
+                onClick={(event) => updateCount(1, event)}
+                disabled={isUpvoteClicked ? true : false}
               >
-                ↑ Upvote
+                <FaThumbsUp />
               </button>
 
               <button
                 className="vote-btn downvote"
-                onClick={() => updateCount(-1)}
+                onClick={(event) => updateCount(-1, event)}
+                disabled={isDownvoteClicked ? true : false}
               >
-                ↓ Downvote
+                <FaThumbsDown />
               </button>
             </div>
           </div>
@@ -89,6 +106,11 @@ function ArticlePage() {
       </div>
 
       <CommentList article_id={article_id} />
+      {isLoading && (
+        <div className="loader-container">
+          <p className="loader"></p>
+        </div>
+      )}
     </>
   );
 }
