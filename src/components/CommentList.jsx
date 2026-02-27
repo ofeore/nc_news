@@ -54,8 +54,8 @@ function CommentList({ article_id }) {
     const previousComments = articleComments;
     setDeletingId(comment_id);
 
-    setArticleComments(
-      (curr) => curr.filter((c) => c.comment_id !== comment_id), //optimistic render
+    setArticleComments((curr) =>
+      curr.filter((c) => c.comment_id !== comment_id),
     );
 
     try {
@@ -66,7 +66,6 @@ function CommentList({ article_id }) {
 
       if (!res.ok) throw new Error("Delete failed");
     } catch (err) {
-      // revert
       setArticleComments(previousComments);
     } finally {
       setDeletingId(null);
