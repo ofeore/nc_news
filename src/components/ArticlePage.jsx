@@ -3,11 +3,13 @@ import { useParams } from "react-router-dom";
 import { FaThumbsUp } from "react-icons/fa6";
 import { FaThumbsDown } from "react-icons/fa6";
 import CommentList from "./CommentList";
+import NotFound from "./NotFound";
 
 function ArticlePage() {
   const [currentArticle, setCurrentArticle] = useState(null);
   const [votes, setVotes] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [err, setErr] = useState(null);
   const [isUpvoteClicked, setIsUpvoteClicked] = useState(false);
   const [isDownvoteClicked, setIsDownvoteClicked] = useState(false);
   const { article_id } = useParams();
@@ -15,25 +17,39 @@ function ArticlePage() {
   useEffect(() => {
     async function fetchSingleArticle() {
       setIsLoading(true);
+      setErr(null);
 
-      const res = await fetch(
-        `https://back-end-nc-news-71fp.onrender.com/api/articles/${article_id}`,
-      );
-      const data = await res.json();
+      try {
+        const res = await fetch(
+          `https://back-end-nc-news-71fp.onrender.com/api/articles/${article_id}`,
+        );
 
-      setCurrentArticle(data.article);
-      setIsLoading(false);
+        if (!res.ok) {
+          throw new Error("Failed to load article");
+        }
+
+        const data = await res.json();
+        setCurrentArticle(data.article);
+      } catch (err) {
+        setErr(err.message);
+      } finally {
+        setIsLoading(false);
+      }
     }
 
     fetchSingleArticle();
   }, [article_id]);
 
-  if (isLoading || !currentArticle) {
+  if (isLoading) {
     return (
       <div className="loader-container">
         <div className="loader" />
       </div>
     );
+  }
+
+  if (!currentArticle) {
+    return <NotFound />;
   }
 
   async function updateCount(num) {
@@ -104,7 +120,7 @@ function ArticlePage() {
           </div>
         </article>
       </div>
-
+      {err && <NotFound />}
       <CommentList article_id={article_id} />
       {isLoading && (
         <div className="loader-container">

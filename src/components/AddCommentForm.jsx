@@ -3,7 +3,7 @@ import { useState } from "react";
 function AddCommentForm({ article_id, setClicked, addCommentToList }) {
   const [inputText, setInputText] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState(null);
+  const [err, setErr] = useState(null);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -37,7 +37,7 @@ function AddCommentForm({ article_id, setClicked, addCommentToList }) {
       setInputText("");
       setClicked(false);
     } catch (err) {
-      setError("Something went wrong. Please try again.");
+      setErr("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
     }

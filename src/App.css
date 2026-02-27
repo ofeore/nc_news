@@ -544,3 +544,23 @@ body {
   opacity: 0.6;
   cursor: not-allowed;
 }
+
+/* Route not found page */
+
+.not-found-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
+}
+
+.lost-img {
+  width: 100%;
+  height: auto;
+}
+
+.not-found-home-link {
+  font-size: 1.2rem;
+  font-style: italic;
+}

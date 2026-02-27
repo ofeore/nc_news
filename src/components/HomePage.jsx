@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import ArticleList from "./ArticleList";
+import NotFound from "./NotFound";
 
 function HomePage() {
   const { topic } = useParams();
@@ -34,6 +35,7 @@ function HomePage() {
       })
       .catch((error) => {
         setErr(error.message);
+        console.log(err);
         setIsLoading(false);
       });
   }, [topic, sortBy, order]);
@@ -50,9 +52,10 @@ function HomePage() {
     <>
       <div className="articles-toolbar">
         <h2 className="articles-heading">
-          {topic
+          {!topic ? "All articles" : ""}
+          {topic && !err
             ? `Topic: ${topic[0].toUpperCase() + topic.slice(1)}`
-            : "All articles"}
+            : ""}
         </h2>
 
         <div className="sort-controls">
@@ -88,7 +91,7 @@ function HomePage() {
           <p className="loader"></p>
         </div>
       )}
-      {err && <p>{err}</p>}
+      {err && <NotFound />}
       {articles && <ArticleList articles={articles} />}
     </>
   );
