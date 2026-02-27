@@ -1,6 +1,10 @@
-# NC NEWS - Frontend
+# NC News – Frontend
 
-Deployed link: https://ncnewspage.netlify.app/
+## Live Demo
+
+Deployed version: https://ncnewspage.netlify.app/
+
+> Please note: The backend is hosted on Render’s free tier, so the API may take a few seconds to respond on the first request after a period of inactivity.
 
 ## Project Overview
 
@@ -27,6 +31,17 @@ Deployed link: https://ncnewspage.netlify.app/
 - Post new comments
 
 - Delete comments (authored by the logged-in user)
+
+<details>
+<summary>Screenshots</summary>
+
+![Home Page](./assets/screenshots/home-page.png)
+![Articles By Topic](./assets/screenshots/articles-by-topic.png)
+![Example Article](./assets/screenshots/example-article.png)
+![Comments](./assets/screenshots/comments.png)
+![Example Error](./assets/screenshots/example-error.png)
+
+</details>
 
 ## Tech Stack
 
@@ -92,8 +107,6 @@ The app should now be running locally (usually on http://localhost:5173 if using
 ## Future Improvements
 
 This project is actively being refined. Planned improvements include:
-
-- Improving consistency of loading and error states
 
 - Improving accessibility and semantic markup
 
