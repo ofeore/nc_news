@@ -1,16 +1,106 @@
-# React + Vite
+# NC NEWS - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Deployed link: https://ncnewspage.netlify.app/
 
-Currently, two official plugins are available:
+## Project Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- NC News is a Reddit-style news aggregation web application that allows users to browse, sort, vote on, and comment on articles across a range of topics.
 
-## React Compiler
+- This project focuses on building a responsive, interactive front-end using React that consumes data from a custom RESTful API.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- The application communicates with a separately hosted backend service to retrieve and update data.
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- View a list of all articles
+
+- Filter articles by topic
+
+- Sort articles by date, comment count, or votes
+
+- View individual articles
+
+- Vote on articles (optimistic rendering)
+
+- View comments for an article
+
+- Post new comments
+
+- Delete comments (authored by the logged-in user)
+
+## Tech Stack
+
+React
+
+JavaScript (ES6+)
+
+HTML
+
+CSS
+
+RESTful API integration
+
+Netlify (deployment)
+
+## Backend Repo
+
+Backend Repository
+
+This frontend consumes data from a custom built API.
+
+**Backend repo: https://github.com/ofeore/back-end-nc-news**
+
+**API Documentation with endpoints: https://back-end-nc-news-71fp.onrender.com/api/**
+
+The backend is built with:
+
+- Node.js
+
+- Express
+
+- PostgreSQL
+
+- Jest & Supertest (testing)
+
+## Running Locally
+
+### Minimum Requirements:
+
+- Node.js v18+ recommended
+
+1. Clone the repository:
+
+```
+git clone https://github.com/ofeore/nc_news.git
+```
+
+2. Navigate to project directory
+
+```
+cd nc_news
+```
+
+3. Install dependencies and start development server
+
+```
+npm install
+npm run dev
+```
+
+The app should now be running locally (usually on http://localhost:5173 if using Vite).
+
+## Future Improvements
+
+This project is actively being refined. Planned improvements include:
+
+- Improving consistency of loading and error states
+
+- Improving accessibility and semantic markup
+
+- Adding user authentication
+
+- Refactoring API logic into reusable hooks
+
+- Improving test coverage
+
+**This portfolio project was created as part of a Digital Skills Bootcamp in Software Engineering provided by Northcoders.**
