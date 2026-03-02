@@ -11,7 +11,7 @@ function AddCommentForm({ article_id, setClicked, addCommentToList }) {
     if (!inputText.trim()) return;
 
     setIsSubmitting(true);
-    setError(null);
+    setErr(null);
 
     try {
       const res = await fetch(
