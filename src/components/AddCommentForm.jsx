@@ -66,7 +66,7 @@ function AddCommentForm({ article_id, setClicked, addCommentToList }) {
         rows={4}
       />
 
-      {error && <p className="comment-error">{error}</p>}
+      {err && <p className="comment-error">{err}</p>}
 
       <button
         type="submit"
